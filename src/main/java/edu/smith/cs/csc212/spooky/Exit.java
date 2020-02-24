@@ -81,6 +81,7 @@ public class Exit {
 	 * This is not a secret exit in any way, but a subclass of exit might be!
 	 * @return always false for a regular exit!
 	 */
+	
 	public boolean isSecret() {
 		// DO NOT CHANGE THIS METHOD. ONLY OVERRIDE IN A SUBCLASS.
 		return false;
@@ -89,6 +90,7 @@ public class Exit {
 	/**
 	 * What changes about this Exit if a player searches it thoroughly? Nothing here.
 	 */
+	
 	public void search() {
 		// DO NOT CHANGE THIS METHOD. ONLY OVERRIDE IN A SUBCLASS.
 		// Does nothing.

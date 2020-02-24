@@ -27,6 +27,7 @@ public class Place {
 	 */
 	private boolean terminal;
 	
+	private List<String> items;
 	/**
 	 * Internal only constructor for Place. Use {@link #create(String, String)} or {@link #terminal(String, String)} instead.
 	 * @param id - the internal id of this place.
@@ -38,6 +39,7 @@ public class Place {
 		this.description = description;
 		this.exits = new ArrayList<>();
 		this.terminal = terminal;
+		this.items = new ArrayList<>();
 	}
 	
 	/**
@@ -46,6 +48,15 @@ public class Place {
 	 */
 	public void addExit(Exit exit) {
 		this.exits.add(exit);
+	}
+	
+	public void addItem(String description){
+		this.items.add(description);
+	}
+	
+	public List<String> getItems() {
+		
+		return this.items;
 	}
 	
 	/**
@@ -129,5 +140,16 @@ public class Place {
 		}
 		return false;
 	}
+	
+	
+	// TA Lauren helped me w/ this
+	public void search() {
+		// calls search in Exit because it is a Exit object
+		for(Exit exit : exits) {
+			exit.search();
+			}
+	}
+	
+	
 	
 }

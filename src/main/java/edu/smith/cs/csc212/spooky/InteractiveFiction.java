@@ -31,9 +31,18 @@ public class InteractiveFiction {
 			System.out.println();
 			System.out.println("... --- ...");
 			System.out.println(here.getDescription());
+			System.out.println(here.getItems());
+			System.out.println("Time: " + player.currentTime.getHour() + ":00");
+			
+			
+			  if (player.hasBeenHereBefore()) {
+			  System.out.println("This place feels familiar"); 
+			  }
+			  
 
 			// Game over after print!
 			if (here.isTerminalState()) {
+				System.out.println("Total hours spent: " + player.currentTime.getHoursSpent());
 				break;
 			}
 
@@ -56,16 +65,48 @@ public class InteractiveFiction {
 			// Do not uppercase action -- I have lowercased it.
 			String action = words.get(0).toLowerCase().trim();
 
-			if (action.equals("quit")) {
+			if (action.equals("quit") || action.equals("escape") || action.equals("q")) {
 				if (input.confirm("Are you sure you want to quit?")) {
 					// quit!
+					System.out.println("Total time spent: " + player.currentTime.getHoursSpent());
 					break;
 				} else {
 					// go to the top of the game loop!
 					continue;
 				}
 			}
+			
+			if (action.equals("help")) {
+				System.out.println("Type in the number of the room you want to go to. Type 'quit', 'escape' or 'q' to exit the game."); 
+				continue;
+			}
+			
+			if (action.equals("search")) {
+				System.out.println("You search the room for additional exits.");
+				
+				// search() in place because here is place obje
+				here.search();
+				continue;
+			}
+			
+			
+			if (action.equals("inventory")) {
 
+				if(player.inventory.isEmpty()) {
+					System.out.println("You have nothing."); 
+				} else { 
+					System.out.println("You have: " + player.inventory); 
+				} 
+				continue; 
+			}
+			    
+			if (action.equals("take")) {
+				for (String s: here.getItems()) {
+				  player.inventory.add(s);
+			  }
+				continue;
+			}
+			 
 			// From here on out, what they typed better be a number!
 			Integer exitNum = null;
 			try {
@@ -84,6 +125,7 @@ public class InteractiveFiction {
 			Exit destination = exits.get(exitNum);
 			if (destination.canOpen(player)) {
 				player.moveTo(destination.getTarget());
+				
 			} else {
 				// TODO: some kind of message about it being locked?
 			}
@@ -108,6 +150,8 @@ public class InteractiveFiction {
 
 		// You get here by typing "quit" or by reaching a Terminal Place.
 		System.out.println("\n\n>>> GAME OVER <<<");
+		
+		
 	}
 
 }
