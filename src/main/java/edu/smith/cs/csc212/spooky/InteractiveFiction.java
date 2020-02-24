@@ -103,6 +103,7 @@ public class InteractiveFiction {
 			if (action.equals("take")) {
 				for (String s: here.getItems()) {
 				  player.inventory.add(s);
+
 				  
 			  }
 				
@@ -132,7 +133,8 @@ public class InteractiveFiction {
 				player.moveTo(destination.getTarget());
 				
 			} else {
-				// TODO: some kind of message about it being locked?
+				
+				System.out.println("You cannot unlock that right now. Maybe with a key?");
 			}
 		}
 		

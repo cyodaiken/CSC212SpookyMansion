@@ -44,6 +44,7 @@ public class SpookyMansion implements GameWorld {
 		basement.addExit(new Exit("fallingPit", "There appears to be a pit in the center of the room you could climb into..."));
 		basement.addExit(new Exit("subbasement", "There are stairs leading down."));
 		basement.addExit(new SecretExit("secretRoom", "There is a trap door that was obscured by dust!"));
+		basement.addExit(new LockedExit("hallway0", "There is a locked door.", "There is a key."));
 		
 		Place subbasement = insert(
 				Place.create("subbasement", "This is the subbasement. It is drafty in here..."));
@@ -95,6 +96,7 @@ public class SpookyMansion implements GameWorld {
 		secretRoom.addExit(new Exit("labyrinth0", "There is door with a skull on it... "+EMOJI_SKULL));
 		secretRoom.addExit(new Exit("hallway0", "There is a long hallway."));
 		secretRoom.addExit(new Exit("basement", "There is a green door."));
+		
 
 		int hallwayDepth = 4;
 		int lastHallwayPart = hallwayDepth - 1;

@@ -22,7 +22,6 @@ public class Player {
 	
 	public GameTime currentTime;
 	
-	
 	public List<String> inventory;
 
 	/**
@@ -59,7 +58,7 @@ public class Player {
 		return this.visited.contains(this.getPlace());
 	}
 	
-	 
+
 	
 	
 	/**

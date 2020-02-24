@@ -2,17 +2,16 @@ package edu.smith.cs.csc212.spooky;
 
 public class LockedExit extends Exit {
 	
-	boolean key;
+	String key;
 	
-	public LockedExit(String target, String description) {
+	public LockedExit(String target, String description, String key) {
 		super(target, description);
-		this.key = false;
+		this.key = key;
 	}
 	
 	@Override
-	public boolean canOpen() {
-		
-		return key;
-	}
+	public boolean canOpen(Player player) {
+		return player.inventory.contains(key);
 
+}
 }
