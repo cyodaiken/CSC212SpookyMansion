@@ -48,7 +48,7 @@ public class SpookyMansion implements GameWorld {
 		Place subbasement = insert(
 				Place.create("subbasement", "This is the subbasement. It is drafty in here..."));
 		subbasement.addExit(new Exit("basement", "There are stairs leading up."));
-		subbasement.addExit(new Exit("entranceHall", "There is a long stairwell up."));
+		subbasement.addExit(new Exit("entranceHall", "There are small rickety stairs leading towards darkness."));
 		subbasement.addItem("There is a key.");
 		
 		Place fallingPit = insert(
@@ -99,8 +99,10 @@ public class SpookyMansion implements GameWorld {
 		int hallwayDepth = 4;
 		int lastHallwayPart = hallwayDepth - 1;
 		for (int i = 0; i < hallwayDepth; i++) {
-			
-			Place hallwayPart = insert(Place.create("hallway" + i, "This is a very long hallway. There are " + i + " scratches on the wall."));
+			String desc = "This is a very long hallway. There are " + (i+1);
+			desc += " scratches";
+			desc += "on the wall.";
+			Place hallwayPart = insert(Place.create("hallway" + i, desc));
 			
 			if (i == 0) {
 				hallwayPart.addExit(new Exit("secretRoom", "Go back."));

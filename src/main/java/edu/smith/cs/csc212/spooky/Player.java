@@ -58,7 +58,10 @@ public class Player {
 	public boolean hasBeenHereBefore() {
 		return this.visited.contains(this.getPlace());
 	}
-
+	
+	 
+	
+	
 	/**
 	 * Call this method when the player moves to a new place.
 	 * @param place - the place we are now located at.

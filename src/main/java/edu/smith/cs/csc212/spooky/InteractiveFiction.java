@@ -39,10 +39,10 @@ public class InteractiveFiction {
 			  System.out.println("This place feels familiar"); 
 			  }
 			  
+			  
 
 			// Game over after print!
 			if (here.isTerminalState()) {
-				System.out.println("Total hours spent: " + player.currentTime.getHoursSpent());
 				break;
 			}
 
@@ -68,7 +68,7 @@ public class InteractiveFiction {
 			if (action.equals("quit") || action.equals("escape") || action.equals("q")) {
 				if (input.confirm("Are you sure you want to quit?")) {
 					// quit!
-					System.out.println("Total time spent: " + player.currentTime.getHoursSpent());
+					
 					break;
 				} else {
 					// go to the top of the game loop!
@@ -90,7 +90,7 @@ public class InteractiveFiction {
 			}
 			
 			
-			if (action.equals("inventory")) {
+			if (action.equals("stuff")) {
 
 				if(player.inventory.isEmpty()) {
 					System.out.println("You have nothing."); 
@@ -103,7 +103,12 @@ public class InteractiveFiction {
 			if (action.equals("take")) {
 				for (String s: here.getItems()) {
 				  player.inventory.add(s);
+				  
 			  }
+				
+				here.getItems().clear();
+				
+				
 				continue;
 			}
 			 
@@ -130,6 +135,8 @@ public class InteractiveFiction {
 				// TODO: some kind of message about it being locked?
 			}
 		}
+		
+		System.out.println("Total time spent: " + player.currentTime.getHoursSpent() + " hour(s).");
 
 		return player.getPlace();
 	}
