@@ -76,7 +76,9 @@ public class SpookyMansion implements GameWorld {
 		attic2.addExit(new Exit("dumbwaiter", "There is a dumbwaiter."));
 
 		
-		Place balcony = insert(Place.create("balcony", "The night is pitch-black."));
+		Place balcony = insert(Place.create("balcony", 
+				"The night is pitch-black."));
+		balcony.setDayDescription("The sun glares in your eyes.");
 		balcony.addExit(new Exit("attic2", "Return to the attic."));
 		balcony.addExit(new Exit("jump", "You could jump off, but you can't see the ground."));
 
@@ -101,11 +103,15 @@ public class SpookyMansion implements GameWorld {
 		int hallwayDepth = 4;
 		int lastHallwayPart = hallwayDepth - 1;
 		for (int i = 0; i < hallwayDepth; i++) {
-			String desc = "This is a very long hallway. There are " + (i+1);
-			desc += " scratches";
-			desc += "on the wall.";
+			String desc = "This is a very long hallway. There" ;
+			if( i == 0) {
+				desc += " is "+ (i+1) + " stratch" ;
+			} else {
+				desc += " are " + (i+1) + " scratches";
+			}
+			desc += " on the wall.";
 			Place hallwayPart = insert(Place.create("hallway" + i, desc));
-			
+
 			if (i == 0) {
 				hallwayPart.addExit(new Exit("secretRoom", "Go back."));
 			} else {

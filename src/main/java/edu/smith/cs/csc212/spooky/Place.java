@@ -22,12 +22,19 @@ public class Place {
 	 * What to tell the user about this place.
 	 */
 	private String description;
+	
+	private String dayDescription;
+	
 	/**
 	 * Whether reaching this place ends the game.
 	 */
 	private boolean terminal;
 	
 	private List<String> items;
+	
+	private GameTime isNightTime;
+	
+	
 	/**
 	 * Internal only constructor for Place. Use {@link #create(String, String)} or {@link #terminal(String, String)} instead.
 	 * @param id - the internal id of this place.
@@ -37,9 +44,11 @@ public class Place {
 	protected Place(String id, String description, boolean terminal) {
 		this.id = id;
 		this.description = description;
+		this.dayDescription = description;
 		this.exits = new ArrayList<>();
 		this.terminal = terminal;
 		this.items = new ArrayList<>();
+		
 	}
 	
 	/**
@@ -79,8 +88,20 @@ public class Place {
 	 * The narrative description of this place.
 	 * @return what we show to a player about this place.
 	 */
-	public String getDescription() {
+	public String printDescription(GameTime hour) {
+		
+		if (hour.isNightTime()) {
 		return this.description;
+		} else {
+			return this.dayDescription;
+		}
+	}
+	
+	
+	public void setDayDecription() {
+		
+		
+		
 	}
 
 	/**
@@ -149,6 +170,10 @@ public class Place {
 			exit.search();
 			}
 	}
+	
+	
+	
+	
 	
 	
 	

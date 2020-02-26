@@ -30,8 +30,10 @@ public class InteractiveFiction {
 			
 			System.out.println();
 			System.out.println("... --- ...");
-			System.out.println(here.getDescription());
-			System.out.println(here.getItems());
+			System.out.println(hour.printDescription());
+			for(String h: here.getItems()) {
+				System.out.println(h);
+			}
 			System.out.println("Time: " + player.currentTime.getHour() + ":00");
 			
 			
@@ -89,6 +91,11 @@ public class InteractiveFiction {
 				continue;
 			}
 			
+			if (action.equals("rest")) {
+				
+				player.currentTime.increaseHour();
+				player.currentTime.increaseHour();
+			}
 			
 			if (action.equals("stuff")) {
 

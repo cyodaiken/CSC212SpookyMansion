@@ -6,8 +6,9 @@ public class GameTime {
 	
 	public int hoursSpent;
 	
+	
 	public GameTime() {
-		this.hour = 0;	
+		this.hour = 17;	
 		this.hoursSpent = 0;
 	}
 	
@@ -23,12 +24,24 @@ public class GameTime {
 	
 	public void increaseHour() {
 		
-		if(this.hour < 24) {
+		if(this.hour < 23) {
 			this.hour += 1;
 		} else {
 			this.hour = 0;
 		}
 		this.hoursSpent += 1;
 	}
+	
+	public boolean isNightTime() {
+		
+		if (this.hour > 19 || this.hour < 7) {
+			
+			return true;
+		} else {
+			
+			return false;
+		}
+			
+	}	
 
 }
