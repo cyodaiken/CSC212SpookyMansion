@@ -89,18 +89,18 @@ public class Place {
 	 * @return what we show to a player about this place.
 	 */
 	public String printDescription(GameTime hour) {
-		
+
 		if (hour.isNightTime()) {
-		return this.description;
+			return this.description;
 		} else {
 			return this.dayDescription;
 		}
 	}
 	
-	
-	public void setDayDecription() {
+	public void setDayDescription(String dayDescription) {
 		
-		
+		this.dayDescription = dayDescription; 
+			
 		
 	}
 

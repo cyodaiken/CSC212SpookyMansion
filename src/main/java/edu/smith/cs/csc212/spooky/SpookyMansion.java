@@ -30,7 +30,8 @@ public class SpookyMansion implements GameWorld {
 		entranceHall.addExit(new Exit("attic", "There are stairs leading up."));
 		entranceHall.addExit(new Exit("kitchen", "There is a red door."));
 		entranceHall.addExit(new Exit("closet", "There is a brown door."));
-
+		entranceHall.addItem("torch");
+		
 		String EMOJI_SKULL = "\uD83D\uDC80";
 		Place closet = insert(Place.create("closet", "On the wall is scratched a series of letters and a skull icon ("+EMOJI_SKULL+").\n"
 				+ "North.. North.. East.. South.\n" 
@@ -40,17 +41,17 @@ public class SpookyMansion implements GameWorld {
 		Place basement = insert(
 				Place.create("basement", "You have found the basement of the mansion.\n" + "It is darker down here.\n"
 						+ "You get the sense a secret is nearby, but you only see the stairs you came from."));
+		basement.addExit(new Exit("subbasement", "There are stairs leading down."));
 		basement.addExit(new Exit("entranceHall", "There are stairs leading up."));
 		basement.addExit(new Exit("fallingPit", "There appears to be a pit in the center of the room you could climb into..."));
-		basement.addExit(new Exit("subbasement", "There are stairs leading down."));
 		basement.addExit(new SecretExit("secretRoom", "There is a trap door that was obscured by dust!"));
-		basement.addExit(new LockedExit("hallway0", "There is a locked door.", "There is a key."));
+		basement.addExit(new LockedExit("hallway0", "There is a locked door.", "small key"));
 		
 		Place subbasement = insert(
 				Place.create("subbasement", "This is the subbasement. It is drafty in here..."));
 		subbasement.addExit(new Exit("basement", "There are stairs leading up."));
-		subbasement.addExit(new Exit("entranceHall", "There are small rickety stairs leading towards darkness."));
-		subbasement.addItem("There is a key.");
+		subbasement.addExit(new Exit("entranceHall", "There is a passageway leading towards darkness."));
+		subbasement.addItem("small key");
 		
 		Place fallingPit = insert(
 				Place.create("fallingPit", "I don't know what you were thinking..."));

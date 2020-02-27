@@ -8,7 +8,7 @@ public class GameTime {
 	
 	
 	public GameTime() {
-		this.hour = 17;	
+		this.hour = 20;	
 		this.hoursSpent = 0;
 	}
 	
@@ -34,13 +34,7 @@ public class GameTime {
 	
 	public boolean isNightTime() {
 		
-		if (this.hour > 19 || this.hour < 7) {
-			
-			return true;
-		} else {
-			
-			return false;
-		}
+		return this.hour > 19 || this.hour < 7;
 			
 	}	
 

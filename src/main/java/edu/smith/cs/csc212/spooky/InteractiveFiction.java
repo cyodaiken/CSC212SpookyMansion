@@ -18,9 +18,13 @@ public class InteractiveFiction {
 	 * @param game - the places and exits that make up the game we're playing.
 	 * @return where - the place the player finished.
 	 */
+	
+	
 	static String runGame(TextInput input, GameWorld game) {
 		// This is the current location of the player (initialize as start).
 		Player player = new Player(game.getStart());
+		
+		
 
 		// Play the game until quitting.
 		// This is too hard to express here, so we just use an infinite loop with breaks.
@@ -30,19 +34,18 @@ public class InteractiveFiction {
 			
 			System.out.println();
 			System.out.println("... --- ...");
-			System.out.println(hour.printDescription());
+			// TA Lauren helped me figure out how to get the time
+			System.out.println(here.printDescription(player.currentTime));
+			
 			for(String h: here.getItems()) {
-				System.out.println(h);
+				System.out.println("There is a: " + h);
 			}
 			System.out.println("Time: " + player.currentTime.getHour() + ":00");
-			
 			
 			  if (player.hasBeenHereBefore()) {
 			  System.out.println("This place feels familiar"); 
 			  }
-			  
-			  
-
+		
 			// Game over after print!
 			if (here.isTerminalState()) {
 				break;
@@ -86,7 +89,7 @@ public class InteractiveFiction {
 			if (action.equals("search")) {
 				System.out.println("You search the room for additional exits.");
 				
-				// search() in place because here is place obje
+				// search() in place because here is place object
 				here.search();
 				continue;
 			}
@@ -102,7 +105,8 @@ public class InteractiveFiction {
 				if(player.inventory.isEmpty()) {
 					System.out.println("You have nothing."); 
 				} else { 
-					System.out.println("You have: " + player.inventory); 
+					for(String s: player.inventory)
+					System.out.println("You have the: " + s); 
 				} 
 				continue; 
 			}
@@ -110,6 +114,7 @@ public class InteractiveFiction {
 			if (action.equals("take")) {
 				for (String s: here.getItems()) {
 				  player.inventory.add(s);
+				  System.out.println("You take the " + s + ".");
 
 				  
 			  }
