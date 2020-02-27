@@ -18,10 +18,17 @@ public class Player {
 	 */
 	private String place;
 	// the player will remember places they have been
+	/**
+	 * The places the player has visited
+	 */
 	private Set<String> visited;
-	
+	/**
+	 * Instance of GameTime of the Player class
+	 */
 	public GameTime currentTime;
-	
+	/**
+	 * List of 'stuff' the player has picked up
+	 */
 	public List<String> inventory;
 
 	/**
@@ -29,8 +36,8 @@ public class Player {
 	 * @param initialPlace - where do we start?
 	 */
 	public Player(String initialPlace) {
-		this.place = initialPlace;
 		
+		this.place = initialPlace;
 		this.visited = new HashSet<>();
 		this.currentTime = new GameTime();
 		this.inventory = new ArrayList<>();
@@ -57,9 +64,6 @@ public class Player {
 	public boolean hasBeenHereBefore() {
 		return this.visited.contains(this.getPlace());
 	}
-	
-
-	
 	
 	/**
 	 * Call this method when the player moves to a new place.

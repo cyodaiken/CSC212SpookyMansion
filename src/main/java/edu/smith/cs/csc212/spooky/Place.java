@@ -22,19 +22,20 @@ public class Place {
 	 * What to tell the user about this place.
 	 */
 	private String description;
-	
+	/**
+	 * What to tell the user about this place during the daytime. 
+	 */
 	private String dayDescription;
-	
+
 	/**
 	 * Whether reaching this place ends the game.
 	 */
 	private boolean terminal;
-	
+	/**
+	 * The items that a place can have 
+	 */
 	private List<String> items;
-	
-	private GameTime isNightTime;
-	
-	
+
 	/**
 	 * Internal only constructor for Place. Use {@link #create(String, String)} or {@link #terminal(String, String)} instead.
 	 * @param id - the internal id of this place.
@@ -42,15 +43,16 @@ public class Place {
 	 * @param terminal - whether this place ends the game.
 	 */
 	protected Place(String id, String description, boolean terminal) {
+
 		this.id = id;
 		this.description = description;
 		this.dayDescription = description;
 		this.exits = new ArrayList<>();
 		this.terminal = terminal;
 		this.items = new ArrayList<>();
-		
+
 	}
-	
+
 	/**
 	 * Create an exit for the user to navigate to another Place.
 	 * @param exit - the description and target of the other Place.
@@ -58,16 +60,24 @@ public class Place {
 	public void addExit(Exit exit) {
 		this.exits.add(exit);
 	}
-	
+
+	/**
+	 * Allows a place to have an item that can be picked up by the player
+	 * @param description- what the item is
+	 */
 	public void addItem(String description){
 		this.items.add(description);
 	}
-	
+
+	/**
+	 * Allows player to get all the items in a place at once 
+	 * @return all the items that a place has
+	 */
 	public List<String> getItems() {
-		
+
 		return this.items;
 	}
-	
+
 	/**
 	 * For gameplay, whether this place ends the game.
 	 * @return true if this is the end.
@@ -75,7 +85,7 @@ public class Place {
 	public boolean isTerminalState() {
 		return this.terminal;
 	}
-	
+
 	/**
 	 * The internal id of this place, for referring to it in {@link Exit} objects.
 	 * @return the id.
@@ -83,7 +93,7 @@ public class Place {
 	public String getId() {
 		return this.id;
 	}
-	
+
 	/**
 	 * The narrative description of this place.
 	 * @return what we show to a player about this place.
@@ -96,12 +106,13 @@ public class Place {
 			return this.dayDescription;
 		}
 	}
-	
+	/**
+	 * sets the description to the day description 
+	 * @param dayDescription
+	 */
 	public void setDayDescription(String dayDescription) {
-		
+
 		this.dayDescription = dayDescription; 
-			
-		
 	}
 
 	/**
@@ -117,7 +128,7 @@ public class Place {
 		}
 		return visible;
 	}
-	
+
 	/**
 	 * This is a terminal location (good or bad).
 	 * @param id - this is the id of the place (for creating {@link Exit} objects that go here).
@@ -127,7 +138,7 @@ public class Place {
 	public static Place terminal(String id, String description) {
 		return new Place(id, description, true);
 	}
-	
+
 	/**
 	 * Create a place with an id and description.
 	 * @param id - this is the id of the place (for creating {@link Exit} objects that go here).
@@ -137,21 +148,21 @@ public class Place {
 	public static Place create(String id, String description) {
 		return new Place(id, description, false);
 	}
-	
+
 	/**
 	 * Implements what we need to put Place in a HashSet or HashMap.
 	 */
 	public int hashCode() {
 		return this.id.hashCode();
 	}
-	
+
 	/**
 	 * Give a string for debugging what place is what.
 	 */
 	public String toString() {
 		return "Place("+this.id+" with "+this.exits.size()+" exits.)";
 	}
-	
+
 	/**
 	 * Whether this is the same place as another.
 	 */
@@ -161,22 +172,25 @@ public class Place {
 		}
 		return false;
 	}
-	
-	
+
+
 	// TA Lauren helped me w/ this
+	/**
+	 * Allows player to search for hidden exits 
+	 */
 	public void search() {
 		// calls search in Exit because it is a Exit object
 		for(Exit exit : exits) {
 			exit.search();
-			}
+		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
 }

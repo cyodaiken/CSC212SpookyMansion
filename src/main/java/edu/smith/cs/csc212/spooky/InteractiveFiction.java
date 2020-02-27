@@ -18,34 +18,33 @@ public class InteractiveFiction {
 	 * @param game - the places and exits that make up the game we're playing.
 	 * @return where - the place the player finished.
 	 */
-	
-	
+
 	static String runGame(TextInput input, GameWorld game) {
 		// This is the current location of the player (initialize as start).
 		Player player = new Player(game.getStart());
-		
-		
 
 		// Play the game until quitting.
 		// This is too hard to express here, so we just use an infinite loop with breaks.
 		while (true) {
 			// Print the description of where you are.
 			Place here = game.getPlace(player.getPlace());
-			
+
 			System.out.println();
 			System.out.println("... --- ...");
-			// TA Lauren helped me figure out how to get the time
+			// TA Lauren helped me figure out how to get the description w/ time
+
 			System.out.println(here.printDescription(player.currentTime));
-			
+
 			for(String h: here.getItems()) {
 				System.out.println("There is a: " + h);
 			}
+
 			System.out.println("Time: " + player.currentTime.getHour() + ":00");
-			
-			  if (player.hasBeenHereBefore()) {
-			  System.out.println("This place feels familiar"); 
-			  }
-		
+
+			if (player.hasBeenHereBefore()) {
+				System.out.println("This place feels familiar"); 
+			}
+
 			// Game over after print!
 			if (here.isTerminalState()) {
 				break;
@@ -73,58 +72,57 @@ public class InteractiveFiction {
 			if (action.equals("quit") || action.equals("escape") || action.equals("q")) {
 				if (input.confirm("Are you sure you want to quit?")) {
 					// quit!
-					
+
 					break;
 				} else {
 					// go to the top of the game loop!
 					continue;
 				}
 			}
-			
+
 			if (action.equals("help")) {
 				System.out.println("Type in the number of the room you want to go to. Type 'quit', 'escape' or 'q' to exit the game."); 
 				continue;
 			}
-			
+
 			if (action.equals("search")) {
 				System.out.println("You search the room for additional exits.");
-				
+
 				// search() in place because here is place object
 				here.search();
 				continue;
 			}
-			
+
 			if (action.equals("rest")) {
+
+				player.currentTime.increaseHour();
+				player.currentTime.increaseHour();
 				
-				player.currentTime.increaseHour();
-				player.currentTime.increaseHour();
+				continue;
 			}
-			
+
 			if (action.equals("stuff")) {
 
 				if(player.inventory.isEmpty()) {
 					System.out.println("You have nothing."); 
 				} else { 
 					for(String s: player.inventory)
-					System.out.println("You have the: " + s); 
+						System.out.println("You have the: " + s); 
 				} 
 				continue; 
 			}
-			    
+
 			if (action.equals("take")) {
 				for (String s: here.getItems()) {
-				  player.inventory.add(s);
-				  System.out.println("You take the " + s + ".");
+					player.inventory.add(s);
+					System.out.println("You take the " + s + ".");	  
+				}
 
-				  
-			  }
-				
 				here.getItems().clear();
-				
-				
+
 				continue;
 			}
-			 
+
 			// From here on out, what they typed better be a number!
 			Integer exitNum = null;
 			try {
@@ -143,13 +141,13 @@ public class InteractiveFiction {
 			Exit destination = exits.get(exitNum);
 			if (destination.canOpen(player)) {
 				player.moveTo(destination.getTarget());
-				
+
 			} else {
-				
+
 				System.out.println("You cannot unlock that right now. Maybe with a key?");
 			}
 		}
-		
+
 		System.out.println("Total time spent: " + player.currentTime.getHoursSpent() + " hour(s).");
 
 		return player.getPlace();
@@ -171,8 +169,6 @@ public class InteractiveFiction {
 
 		// You get here by typing "quit" or by reaching a Terminal Place.
 		System.out.println("\n\n>>> GAME OVER <<<");
-		
-		
 	}
 
 }

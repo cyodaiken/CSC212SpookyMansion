@@ -34,10 +34,11 @@ public class SpookyMansion implements GameWorld {
 		
 		String EMOJI_SKULL = "\uD83D\uDC80";
 		Place closet = insert(Place.create("closet", "On the wall is scratched a series of letters and a skull icon ("+EMOJI_SKULL+").\n"
-				+ "North.. North.. East.. South.\n" 
+				+ "North.. East.. West.. South.\n" 
 				+ "What could it mean?"));
 		closet.addExit(new Exit("entranceHall", "Go back."));
 
+		String smallKey = "small key";
 		Place basement = insert(
 				Place.create("basement", "You have found the basement of the mansion.\n" + "It is darker down here.\n"
 						+ "You get the sense a secret is nearby, but you only see the stairs you came from."));
@@ -45,13 +46,14 @@ public class SpookyMansion implements GameWorld {
 		basement.addExit(new Exit("entranceHall", "There are stairs leading up."));
 		basement.addExit(new Exit("fallingPit", "There appears to be a pit in the center of the room you could climb into..."));
 		basement.addExit(new SecretExit("secretRoom", "There is a trap door that was obscured by dust!"));
-		basement.addExit(new LockedExit("hallway0", "There is a locked door.", "small key"));
+		basement.addExit(new LockedExit("hallway0", "There is a locked door.", smallKey));
 		
 		Place subbasement = insert(
 				Place.create("subbasement", "This is the subbasement. It is drafty in here..."));
 		subbasement.addExit(new Exit("basement", "There are stairs leading up."));
 		subbasement.addExit(new Exit("entranceHall", "There is a passageway leading towards darkness."));
-		subbasement.addItem("small key");
+		subbasement.addItem(smallKey);
+		subbasement.addItem("skeleton");
 		
 		Place fallingPit = insert(
 				Place.create("fallingPit", "I don't know what you were thinking..."));
@@ -141,17 +143,17 @@ public class SpookyMansion implements GameWorld {
 		labyrinth0.addExit(new Exit("labyrinth0", "Go South."));
 		labyrinth0.addExit(new Exit("labyrinth0", "Go West."));
 		
-		// solution: North.
-		labyrinth1.addExit(new Exit("labyrinth2", "Go North."));
-		labyrinth1.addExit(new Exit("labyrinth0", "Go East."));
+		// solution: East.
+		labyrinth1.addExit(new Exit("labyrinth0", "Go North."));
+		labyrinth1.addExit(new Exit("labyrinth2", "Go East."));
 		labyrinth1.addExit(new Exit("labyrinth0", "Go South."));
 		labyrinth1.addExit(new Exit("labyrinth0", "Go West."));
 		
-		// solution: East.
+		// solution: West.
 		labyrinth2.addExit(new Exit("labyrinth0", "Go North."));
-		labyrinth2.addExit(new Exit("labyrinth3", "Go East."));
+		labyrinth2.addExit(new Exit("labyrinth0", "Go East."));
 		labyrinth2.addExit(new Exit("labyrinth0", "Go South."));
-		labyrinth2.addExit(new Exit("labyrinth0", "Go West."));
+		labyrinth2.addExit(new Exit("labyrinth3", "Go West."));
 		
 		// solution: South.
 		labyrinth3.addExit(new Exit("labyrinth0", "Go North."));
