@@ -31,14 +31,17 @@ public class InteractiveFiction {
 
 			System.out.println();
 			System.out.println("... --- ...");
-			// TA Lauren helped me figure out how to get the description w/ time
-
+			
+			// TA Lauren helped me figure out how to get the description w/ day night component
 			System.out.println(here.printDescription(player.currentTime));
 
+			// prints out the items in the place
 			for(String h: here.getItems()) {
+				
 				System.out.println("There is a: " + h);
 			}
-
+			
+			// prints out the current time
 			System.out.println("Time: " + player.currentTime.getHour() + ":00");
 
 			if (player.hasBeenHereBefore()) {
@@ -72,7 +75,6 @@ public class InteractiveFiction {
 			if (action.equals("quit") || action.equals("escape") || action.equals("q")) {
 				if (input.confirm("Are you sure you want to quit?")) {
 					// quit!
-
 					break;
 				} else {
 					// go to the top of the game loop!
@@ -81,7 +83,11 @@ public class InteractiveFiction {
 			}
 
 			if (action.equals("help")) {
-				System.out.println("Type in the number of the room you want to go to. Type 'quit', 'escape' or 'q' to exit the game."); 
+				System.out.println("Type the number of the room you want to go to. "
+						+ "Type 'quit', 'escape' or 'q' to exit the game."
+						+ "Type 'stuff' to see what items you have. "
+						+ "Type 'take' to get the items in the room. "
+						+ "Type 'search' to look for more exits in a room."); 
 				continue;
 			}
 
@@ -97,10 +103,11 @@ public class InteractiveFiction {
 
 				player.currentTime.increaseHour();
 				player.currentTime.increaseHour();
-				
+
 				continue;
 			}
 
+			// what stuff the player has
 			if (action.equals("stuff")) {
 
 				if(player.inventory.isEmpty()) {
@@ -111,13 +118,14 @@ public class InteractiveFiction {
 				} 
 				continue; 
 			}
-
+			// allows the player to take items in a room
 			if (action.equals("take")) {
 				for (String s: here.getItems()) {
 					player.inventory.add(s);
 					System.out.println("You take the " + s + ".");	  
 				}
-
+				
+				// clears the items that the player has taken from the room
 				here.getItems().clear();
 
 				continue;
@@ -147,7 +155,8 @@ public class InteractiveFiction {
 				System.out.println("You cannot unlock that right now. Maybe with a key?");
 			}
 		}
-
+		
+		// when the game ends, tells the elapsed time
 		System.out.println("Total time spent: " + player.currentTime.getHoursSpent() + " hour(s).");
 
 		return player.getPlace();

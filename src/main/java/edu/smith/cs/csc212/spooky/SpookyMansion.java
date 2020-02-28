@@ -31,7 +31,7 @@ public class SpookyMansion implements GameWorld {
 		entranceHall.addExit(new Exit("kitchen", "There is a red door."));
 		entranceHall.addExit(new Exit("closet", "There is a brown door."));
 		entranceHall.addItem("torch");
-		
+
 		String EMOJI_SKULL = "\uD83D\uDC80";
 		Place closet = insert(Place.create("closet", "On the wall is scratched a series of letters and a skull icon ("+EMOJI_SKULL+").\n"
 				+ "North.. East.. West.. South.\n" 
@@ -47,14 +47,14 @@ public class SpookyMansion implements GameWorld {
 		basement.addExit(new Exit("fallingPit", "There appears to be a pit in the center of the room you could climb into..."));
 		basement.addExit(new SecretExit("secretRoom", "There is a trap door that was obscured by dust!"));
 		basement.addExit(new LockedExit("hallway0", "There is a locked door.", smallKey));
-		
+
 		Place subbasement = insert(
 				Place.create("subbasement", "This is the subbasement. It is drafty in here..."));
 		subbasement.addExit(new Exit("basement", "There are stairs leading up."));
 		subbasement.addExit(new Exit("entranceHall", "There is a passageway leading towards darkness."));
 		subbasement.addItem(smallKey);
 		subbasement.addItem("skeleton");
-		
+
 		Place fallingPit = insert(
 				Place.create("fallingPit", "I don't know what you were thinking..."));
 		fallingPit.addExit(new Exit("labyrinth0", "Keep falling."));
@@ -64,13 +64,13 @@ public class SpookyMansion implements GameWorld {
 		attic.addExit(new Exit("entranceHall", "There are stairs leading down."));
 		attic.addExit(new Exit("attic2", "There is more through an archway."));
 		attic.addExit(new Exit("closet2", "There is a narrow door."));
-		
+
 		Place closet2 = insert(Place.create("closet2",
 				"A warmth is coming from the closet."));
 		closet2.addExit(new Exit("attic", "There is more back through the attic"));
 		closet2.addExit(new Exit("fallingPit", "There appears to be a pit."));
-		
-		
+
+
 
 		Place attic2 = insert(Place.create("attic2", "There's definitely a bat in here somewhere.\n"
 				+ "This part of the attic is brighter, so maybe you're safe here."));
@@ -78,7 +78,7 @@ public class SpookyMansion implements GameWorld {
 		attic2.addExit(new Exit("balcony", "There is a balcony."));
 		attic2.addExit(new Exit("dumbwaiter", "There is a dumbwaiter."));
 
-		
+
 		Place balcony = insert(Place.create("balcony", 
 				"The night is pitch-black."));
 		balcony.setDayDescription("The sun glares in your eyes.");
@@ -86,7 +86,7 @@ public class SpookyMansion implements GameWorld {
 		balcony.addExit(new Exit("jump", "You could jump off, but you can't see the ground."));
 
 		Place jump = insert(Place.terminal("jump", "I wonder what you expected to happen here."));
-		
+
 		Place kitchen = insert(
 				Place.create("kitchen", "You've found the kitchen. You smell old food and some kind of animal."));
 		kitchen.addExit(new Exit("entranceHall", "There is a red door."));
@@ -101,7 +101,7 @@ public class SpookyMansion implements GameWorld {
 		secretRoom.addExit(new Exit("labyrinth0", "There is door with a skull on it... "+EMOJI_SKULL));
 		secretRoom.addExit(new Exit("hallway0", "There is a long hallway."));
 		secretRoom.addExit(new Exit("basement", "There is a green door."));
-		
+
 
 		int hallwayDepth = 4;
 		int lastHallwayPart = hallwayDepth - 1;
@@ -136,31 +136,31 @@ public class SpookyMansion implements GameWorld {
 		Place labyrinth1 = insert(Place.create("labyrinth1", labyrinthDescription));
 		Place labyrinth2 = insert(Place.create("labyrinth2", labyrinthDescription));
 		Place labyrinth3 = insert(Place.create("labyrinth3", labyrinthDescription));
-		
+
 		// solution: North.
 		labyrinth0.addExit(new Exit("labyrinth1", "Go North."));
 		labyrinth0.addExit(new Exit("labyrinth0", "Go East."));
 		labyrinth0.addExit(new Exit("labyrinth0", "Go South."));
 		labyrinth0.addExit(new Exit("labyrinth0", "Go West."));
-		
+
 		// solution: East.
 		labyrinth1.addExit(new Exit("labyrinth0", "Go North."));
 		labyrinth1.addExit(new Exit("labyrinth2", "Go East."));
 		labyrinth1.addExit(new Exit("labyrinth0", "Go South."));
 		labyrinth1.addExit(new Exit("labyrinth0", "Go West."));
-		
+
 		// solution: West.
 		labyrinth2.addExit(new Exit("labyrinth0", "Go North."));
 		labyrinth2.addExit(new Exit("labyrinth0", "Go East."));
 		labyrinth2.addExit(new Exit("labyrinth0", "Go South."));
 		labyrinth2.addExit(new Exit("labyrinth3", "Go West."));
-		
+
 		// solution: South.
 		labyrinth3.addExit(new Exit("labyrinth0", "Go North."));
 		labyrinth3.addExit(new Exit("labyrinth3", "Go East."));
 		labyrinth3.addExit(new Exit("entranceHall", "Go South."));	
 		labyrinth3.addExit(new Exit("labyrinth0", "Go West."));
-	
+
 		// Make sure your graph makes sense!
 		checkAllExitsGoSomewhere();
 	}

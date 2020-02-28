@@ -26,7 +26,6 @@ public class Place {
 	 * What to tell the user about this place during the daytime. 
 	 */
 	private String dayDescription;
-
 	/**
 	 * Whether reaching this place ends the game.
 	 */
@@ -58,6 +57,7 @@ public class Place {
 	 * @param exit - the description and target of the other Place.
 	 */
 	public void addExit(Exit exit) {
+		
 		this.exits.add(exit);
 	}
 
@@ -66,6 +66,7 @@ public class Place {
 	 * @param description- what the item is
 	 */
 	public void addItem(String description){
+		
 		this.items.add(description);
 	}
 
@@ -83,6 +84,7 @@ public class Place {
 	 * @return true if this is the end.
 	 */
 	public boolean isTerminalState() {
+		
 		return this.terminal;
 	}
 
@@ -91,6 +93,7 @@ public class Place {
 	 * @return the id.
 	 */
 	public String getId() {
+		
 		return this.id;
 	}
 
@@ -100,12 +103,13 @@ public class Place {
 	 */
 	public String printDescription(GameTime hour) {
 
-		if (hour.isNightTime()) {
+		if (hour.isNightTime()) {		
 			return this.description;
 		} else {
 			return this.dayDescription;
 		}
 	}
+	
 	/**
 	 * sets the description to the day description 
 	 * @param dayDescription
@@ -120,6 +124,7 @@ public class Place {
 	 * @return all the exits from this place.
 	 */
 	public List<Exit> getVisibleExits() {
+		
 		List<Exit> visible = new ArrayList<>();
 		for (Exit e : this.exits) {
 			if (!e.isSecret()) {
@@ -146,6 +151,7 @@ public class Place {
 	 * @return the new Place object (add exits to it).
 	 */
 	public static Place create(String id, String description) {
+		
 		return new Place(id, description, false);
 	}
 
@@ -153,6 +159,7 @@ public class Place {
 	 * Implements what we need to put Place in a HashSet or HashMap.
 	 */
 	public int hashCode() {
+		
 		return this.id.hashCode();
 	}
 
@@ -160,6 +167,7 @@ public class Place {
 	 * Give a string for debugging what place is what.
 	 */
 	public String toString() {
+		
 		return "Place("+this.id+" with "+this.exits.size()+" exits.)";
 	}
 
@@ -173,7 +181,6 @@ public class Place {
 		return false;
 	}
 
-
 	// TA Lauren helped me w/ this
 	/**
 	 * Allows player to search for hidden exits 
@@ -184,13 +191,4 @@ public class Place {
 			exit.search();
 		}
 	}
-
-
-
-
-
-
-
-
-
 }

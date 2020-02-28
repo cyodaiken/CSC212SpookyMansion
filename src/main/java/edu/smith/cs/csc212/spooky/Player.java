@@ -36,12 +36,12 @@ public class Player {
 	 * @param initialPlace - where do we start?
 	 */
 	public Player(String initialPlace) {
-		
+
 		this.place = initialPlace;
 		this.visited = new HashSet<>();
 		this.currentTime = new GameTime();
 		this.inventory = new ArrayList<>();
-		
+
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class Player {
 	public boolean hasBeenHereBefore() {
 		return this.visited.contains(this.getPlace());
 	}
-	
+
 	/**
 	 * Call this method when the player moves to a new place.
 	 * @param place - the place we are now located at.

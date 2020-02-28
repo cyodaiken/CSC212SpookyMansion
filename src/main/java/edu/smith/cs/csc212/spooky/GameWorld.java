@@ -11,7 +11,7 @@ public interface GameWorld {
 	 * @return the id of a Place.
 	 */
 	String getStart();
-	
+
 	/**
 	 * What is the Place for a given id in this game?
 	 * @param id - the internal name of the Place.

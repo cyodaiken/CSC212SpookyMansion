@@ -16,7 +16,7 @@ public class Exit {
 	 * How do we identify the Place that this is going.
 	 */
 	private String target;
-	
+
 	/**
 	 * Create a new Exit.
 	 * @param target - where it goes.
@@ -26,7 +26,7 @@ public class Exit {
 		this.description = description;
 		this.target = target;
 	}
-	
+
 	/**
 	 * A getter for the description of this exit.
 	 * @return how it looks.
@@ -34,7 +34,7 @@ public class Exit {
 	public String getDescription() {
 		return this.description;
 	}
-	
+
 	/**
 	 * A getter for the target place of this exit.
 	 * @return where it goes.
@@ -42,21 +42,21 @@ public class Exit {
 	public String getTarget() {
 		return this.target;
 	}
-	
+
 	/**
 	 * Make this debug-able when we print it for ourselves.
 	 */
 	public String toString() {
 		return "Exit("+this.description+", "+this.target+")";
 	}
-	
+
 	/**
 	 * Make it so we can put this in a HashMap or HashSet.
 	 */
 	public int hashCode() {
 		return Objects.hash(this.description, this.target);
 	}
-	
+
 	/**
 	 * This is a useful definition of being the same.
 	 * @param other - another exit.
@@ -65,7 +65,7 @@ public class Exit {
 	public boolean goesToSamePlace(Exit other) {
 		return this.target.equals(other.target);
 	}
-	
+
 	/**
 	 * The other half of hashCode that lets us put it in a HashMap or HashSet.
 	 */
@@ -76,26 +76,26 @@ public class Exit {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * This is not a secret exit in any way, but a subclass of exit might be!
 	 * @return always false for a regular exit!
 	 */
-	
+
 	public boolean isSecret() {
 		// DO NOT CHANGE THIS METHOD. ONLY OVERRIDE IN A SUBCLASS.
 		return false;
 	}
-	
+
 	/**
 	 * What changes about this Exit if a player searches it thoroughly? Nothing here.
 	 */
-	
+
 	public void search() {
 		// DO NOT CHANGE THIS METHOD. ONLY OVERRIDE IN A SUBCLASS.
 		// Does nothing.
 	}
-	
+
 	/**
 	 * Can the player open this door?
 	 * @param player - the player object (and all other state)

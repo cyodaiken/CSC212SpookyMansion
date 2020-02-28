@@ -11,7 +11,7 @@ public class LockedExit extends Exit {
 	 * 'stuff' the player needs to open a locked exit
 	 */
 	private String key;
-	
+
 	/**
 	 * create a new locked exit
 	 * @param target - where it goes
@@ -22,7 +22,7 @@ public class LockedExit extends Exit {
 		super(target, description);
 		this.key = key;
 	}
-	
+
 	/**
 	 * return true if the exit can open (if the player has the key)
 	 */
